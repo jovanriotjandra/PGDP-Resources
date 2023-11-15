@@ -1,39 +1,3 @@
-public static void printCollatz(int n) {
-		// TODO
-		if(n<=0){
-			System.out.println("Eingabe muss größer als 0 sein!");
-		}
-
-		int counter = 1;
-		while (n > 1) {
-			System.out.print(n + " ");
-			if(n % 2 == 0) {
-				n = n / 2;
-			}
-			else {
-				n = 3*n + 1;
-			}
-			counter++;
-		}
-
-		System.out.println("1");
-		System.out.println("Länge: " + counter);
-	}
----------------------------------------------------------------------------------------------
-public static void printPowersOfTwoUpTo(int n) {
-		if(n < 1) {
-			System.out.println("Eingabe muss größer als 0 sein!");
-			return;
-		}
-
-		int powerOfTwo = 1;
-		while(powerOfTwo <= n / 2) {
-			System.out.print(powerOfTwo + " ");
-			powerOfTwo = powerOfTwo * 2;
-		}
-		System.out.println(powerOfTwo);
-	}
----------------------------------------------------------------------------------------------
 public static void printTriangle(int sideLength) {
 		// TODO
 		if(sideLength <= 0) {
@@ -52,19 +16,6 @@ public static void printTriangle(int sideLength) {
 		}
 	}
 ---------------------------------------------------------------------------------------------
-public static int calculateNumberOfDigits(int n) {
-		// TODO
-		int counter=0;
-		if(n>=0){
-			while(n!=0) {
-				n = n / 10;
-				counter++;
-			}
-		}
-		System.out.print(counter);
-		return counter;
-	}
-
 public static int reverseNumber(int n) {
 		// TODO
 		int reversedNum = 0;
@@ -75,52 +26,6 @@ public static int reverseNumber(int n) {
 			reversedNum = reversedNum*10 + remainder;
 		}
 		return reversedNum;
-	}
----------------------------------------------------------------------------------------------
-public static boolean isPalindrome(int n) {
-		// TODO
-		int i=n;				//saves the value of n
-		int reversedNum = 0;
-		int remainder;
-		while (i != 0) {
-			remainder = i%10;
-			i/=10;
-			reversedNum = reversedNum*10 + remainder;
-		}
-		if(reversedNum==i){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
----------------------------------------------------------------------------------------------
-public static void printAsciiCodesFor(char start, int count) {
-		// TODO
-		int startInt = (int) start;							//type-cast
-		for(int i=startInt ; i<start + count ; i++){
-			System.out.println("Der ASCII-Code von '" + (char) i + "' ist "+ i +".");
-		}
-	}
----------------------------------------------------------------------------------------------
-public static void printPrimesUpTo(int n) {
-		for(int i = 2; i <= n; i++) {
-			if(isPrime(i)) {
-				System.out.print(i + " ");
-			}
-		}
-	}
-
-	public static boolean isPrime(int n) {
-		if (n < 2) {
-			return false;
-		}
-		for (int i = 2; i*i <= n; i++) {
-			if (n % i == 0) {
-				return false;
-			}
-		}
-		return true;
 	}
 ---------------------------------------------------------------------------------------------
 public static void printPrimesUpTo(int n) {
@@ -164,27 +69,368 @@ public static int penguEvolution(int penguin, int years) {
 		}
 		return penguin;
 	}
-
+---------------------------------------------------------------------------------------------
 public static long penguPermutation(long n, long k) {
-		// TODO							                exm: permutation(3,5) means possible number of tuples of 3, from 5 elements
-		long res=1;						              //in permutation, 1 is always base case
+		// TODO					exm: permutation(3,5) means possible number of tuples of 3, from 5 elements
+		long res=1;				//in permutation, 1 is always base case
 		for(long i=k+1 ; i<=n ; i++){      	//to consider the remaining elements, since you start w/ the first k(exm 3) elements
-										                    //n so need to consider the possible combinations with the other two
-			res *= i;					                //the number of ways to choose k elements and arrange them from the remaining n - k elements.
-		}								                    //in this case the 3 stones r indifferentiable, so there r 3 elements(k,4 and 5)
+							//n so need to consider the possible combinations with the other two
+			res *= i;			//the number of ways to choose k elements and arrange them from the remaining n - k elements.
+		}					//in this case the 3 stones r indifferentiable, so there r 3 elements(k,4 and 5)
 		return res;
 	}
-
+---------------------------------------------------------------------------------------------
 public static long penguPowers(int x, int i) {
 		// TODO
-		long res = 1;				                //set to 0, as the x^0 is always 1
-		while (i-- > 0) {			              //as long as power doesn't reach 0
-			long temp_res = 0;		            //resets the temp_res to 0 after each inner loop
-			long temp_x = x;		              //stores the value of x so it doesn't decrement (+3+3+3..instead of +3+2+1..)
+		long res = 1;				  //set to 0, as the x^0 is always 1
+		while (i-- > 0) {			  //as long as power doesn't reach 0
+			long temp_res = 0;		  //resets the temp_res to 0 after each inner loop
+			long temp_x = x;		  //stores the value of x so it doesn't decrement (+3+3+3..instead of +3+2+1..)
 			while (temp_x-- > 0) {	          //the number of times it does it(3x3 = 3+3+3 or 4x4 = 4+4+4+4)
-  			  temp_res += res;	            //adds the value of res 3x to the total
+  			  temp_res += res;	          //adds the value of res 3x to the total
 			}
-			res = temp_res;			              //sets the value of rest to the next "3x3" value,
-		}							                      //it goes from res 3(1+1+1) to 9(3+3+3) to 27(9+9+9) to 81(27+27+27)
-		return res;					                //each step is from previous
-	}								                      //KEYNOTE: TEMP_RES IS RESET TO 0 AFT EVERY LOOP
+			res = temp_res;			  //sets the value of rest to the next "3x3" value,
+		}					  //it goes from res 3(1+1+1) to 9(3+3+3) to 27(9+9+9) to 81(27+27+27)
+		return res;				  //each step is from previous
+	}						  //KEYNOTE: TEMP_RES IS RESET TO 0 AFT EVERY LOOP
+---------------------------------------------------------------------------------------------
+public static boolean isOrderedAscendingly(int[] a) {
+	// TODO
+	boolean ascending = true;
+	for(int i = 0 ; i<a.length-1 ; i++){
+		if(a[i]>a[i+1]){
+			ascending=false;
+		}
+	}
+	return ascending;
+}
+---------------------------------------------------------------------------------------------
+public static void invert(int[] a) {
+	// TODO
+	int[] inverted = new int[a.length];
+	for(int i=0 ; i<a.length ; i++){
+		inverted[i]=a[a.length-1-i];
+	}
+
+	for(int i = 0 ; i<a.length ; i++){
+		a[i]=inverted[i];
+	}
+}
+---------------------------------------------------------------------------------------------
+public static int[] resize(int[] a, int length) {
+	// TODO
+	if(length<=0){
+		return new int[0];
+	}
+
+	int[] resize = new int[length];
+	if(a.length>=length){
+		for(int i=0 ; i<length ; i++){
+			resize[i]=a[i];
+		}
+	}
+	if(a.length<length){
+		for(int i=0 ; i<a.length ; i++){
+			resize[i]=a[i];
+		}
+		for(int i=a.length ; i<length ; i++){
+			resize[i]=0;
+		}
+	}
+	return resize;
+}
+---------------------------------------------------------------------------------------------
+public static int[] filterEvenNumbersFrom(int[] a) {
+	// TODO
+	int evenLength=0;
+	for(int i=0 ; i<a.length ; i++){
+		if(a[i]%2==0){
+			evenLength++;
+		}
+	}
+
+	int[] even = new int[evenLength];
+
+	int index=0;
+	for(int i=0 ; i<a.length ; i++){
+		if(a[i]%2==0){
+			even[index]=a[i];
+			index++;
+		}
+	}
+	return even;
+}
+---------------------------------------------------------------------------------------------
+public static int[] distinct(int[] a) {
+	// TODO
+	/*int[] distinct = new int[a.length];
+
+	int index=0;
+	for(int i=0 ; i<a.length ; i++){
+		boolean isDistinct=true;
+		for(int j=0 ; j<i ; j++)
+			if(a[i]==a[j]){
+				isDistinct=false;		shorter working code
+				break;
+			}
+		if(isDistinct){
+			distinct[index] = a[i];
+			index++;
+		}
+	}
+
+	int[] trimmedDistinct = new int[index];
+	for(int i=0 ; i<index ; i++){
+		trimmedDistinct[i]=distinct[i];
+	}
+
+	return trimmedDistinct;*/
+------------------------------------------OR-------------------------------------------------
+public static int[] distinct(int[] a) {
+	// TODO
+	if(a.length==0){
+		return new int[0];				//if length is 0, returns an empty set
+	}
+
+	int distinctEle=0;					//counter for distinct elements
+
+	for(int i=0 ; i<a.length ; i++){
+		boolean unique=true;				//assumes it is unique
+		for(int j=0 ; j<i ; j++){			//checks i with the element at the index before it
+			if(a[i]==a[j]){				//first time doesn't even loop cuz 0<0 so immediately a distinct ele
+				unique=false;			//changes it to not unique n breaks the loop
+				break;
+			}
+		}
+		if(unique){
+			distinctEle++;
+		}
+	}
+
+	int[] distinct = new int[distinctEle];
+
+	int index=0;					//shows the index of the number of unique elements
+	for(int i=0 ; i<a.length ; i++) {		//starts with i=1 bc 1st ele is alr unique
+		boolean unique = true;
+		for (int j = 0; j < i; j++) {
+			if (a[i] == a[j]) {
+				unique = false;
+				break;
+			}
+		}
+		if (unique) {
+			distinct[index] = a[i];
+			index++;			//if unique, we add it to the array, so we increase the index as well
+		}
+	}
+	return distinct;
+}
+---------------------------------------------------------------------------------------------
+public static int[][] minsAndMaxs(int[][] a) {
+	// TODO
+	int[][] minmax = new int[a.length][2];	//a.length bc thats the length of the array given
+	for(int i=0 ; i<a.length ; i++){
+		int	min=a[i][0];
+		int	max=a[i][0];
+		for(int j=0 ; j<a[i].length ; j++){	//to get inner array length, use a[i].length
+			if(min>a[i][j]){
+				min = a[i][j];
+			}
+			if(max<a[i][j]){
+				max = a[i][j];
+			}
+			minmax[i]=new int[]{min, max};	//this is how to write it into the array
+		}
+	}
+	return minmax;
+}
+---------------------------------------------------------------------------------------------
+public static int[][] transpose(int[][] a) {
+	// TODO
+	int[][] transpose = new int[a[0].length][a.length];
+	for(int i=0 ; i<a[0].length ; i++){
+		for(int j=0 ; j<a.length ; j++){
+			transpose[i][j]=a[j][i];
+		}
+	}
+	return transpose;
+}
+---------------------------------------------------------------------------------------------
+public static boolean crossword(char[][] letterGrid, char[] word) {
+	// TODO
+	boolean isCrossword = false;
+
+	for (int i = 0; i < letterGrid.length; i++) {
+		for (int j = 0; j < letterGrid[i].length; j++) {
+			// Check horizontally
+			if (j + word.length <= letterGrid[i].length) {
+				isCrossword = true;						//assume its found
+				for (int k = 0; k < word.length; k++) {
+					if (word[k] != letterGrid[i][j+k]) {			//j+k bc j determines the starting position			A A C A T
+												//if only k, it'll always check from the 1st			this wud never be detected, as word[k] traverses from 1st slot only
+						isCrossword = false;				//!=, so we search for errors to prove its false
+						break;						//alr horizontally found, so no need for other checks
+					}
+				}
+			}
+
+			//Check vertically
+			if (!isCrossword && i + word.length <= letterGrid[i].length) {		//!isCrossword ensures that the previous check
+												//is unsuccessful, if it is successful it passes through
+				isCrossword = true;						//assume its found
+				for (int k = 0; k < word.length; k++) {
+					if (word[k] != letterGrid[i+k][j]) {			//i+k bc i determines the starting position(vertically)
+												//if only k, it'll always check from the 1st(top)
+						isCrossword = false;				//!=, so we search for errors to prove its false
+						break;						//alr vertically found, so no need for other checks
+					}
+				}
+			}
+
+			//Check diagonally
+			if (!isCrossword && word.length <= letterGrid[i].length) {
+				isCrossword = true;						//assume its found
+				for (int k = 0; k < word.length; k++) {
+					if (word[k] != letterGrid[i + k][j + k]) {
+						isCrossword = false;
+						break;
+					}
+				}
+			}
+
+			if (isCrossword) {
+				return true; 							// Exit early if the word is found bc or else itll loop again with different values of
+			}				 					//i and j, as they are located outside and all the code r within them
+		}
+	}
+	return isCrossword;
+}
+---------------------------------------------------------------------------------------------
+public static int[] zip(int[] a, int[] b) {
+        // TODO
+        int[] combinedArray = new int[a.length + b.length];
+        int maxLength = Math.max(a.length, b.length);
+
+        int index=0;
+        for(int i=0 ; i<maxLength ; i++){
+            if(i<a.length){
+                combinedArray[index]=a[i];
+                index++;
+            }
+            if(i<b.length){
+                combinedArray[index]=b[i];
+                index++;
+            }
+        }
+        return combinedArray;
+    }
+---------------------------------------------------------------------------------------------
+ public static int[] zipMany(int[][] arrays) {
+        // TODO
+        //determine total length of zippedArray
+        int totalLength=0;
+        for(int i=0 ; i<arrays.length ; i++){
+            for(int j=0 ; j<arrays[i].length ; j++){
+                totalLength++;
+            }
+        }
+
+        //determines the max length
+        int maxLength=0;
+        for(int i=0 ; i<arrays.length ; i++){
+            if(maxLength<arrays[i].length){
+                maxLength=arrays[i].length;
+            }
+        }
+
+        int[] zippedArray = new int[totalLength];
+
+        int indexPosition=0;                        		//{1,4,7},{2,5,8},{3,6,9,10}
+        for(int i=0 ; i<maxLength ; i++){           		//let's say max length is 4, so indexes r 0,1,2,3
+            for(int j=0 ; j<arrays.length ; j++){   		//iterates through no of arrays
+                if(i<arrays[j].length){            		//if current i=0, and it is smaller than the length of the j-th array
+                                                    		//if i=3(index 3), it won't work w/ 0th n 1st array as 3<3(length of 0th n 1st array)
+                    zippedArray[indexPosition]=arrays[j][i];	//it iterates through [0][0],[1][0],[2][0] n then [0][1],[1][1],[2][1]
+                    indexPosition++;
+                }
+            }
+        }
+        return zippedArray;
+    }
+---------------------------------------------------------------------------------------------
+public static int[] filter(int[] array,int min,int max) {
+        // TODO
+        if(max<min){
+            return new int[0];
+        }
+
+        int filteredLength = 0;
+        for(int i=0 ; i<array.length ; i++){
+            if(array[i]<=max && array[i]>=min){
+                filteredLength++;
+            }
+        }
+
+        int[] filteredArray = new int[filteredLength];
+
+        int index=0;
+        for(int i=0 ; i<array.length ; i++){
+            if(array[i]<=max && array[i]>=min){
+                filteredArray[index]=array[i];
+                index++;
+            }
+        }
+
+        return filteredArray;
+    }
+---------------------------------------------------------------------------------------------
+public static void rotate(int[] array, int amount) {
+        //TODO
+        if(array.length==0){
+            return;
+        }
+
+        //ensures the amount is positive and within the range of [0,4]
+        amount = amount % array.length;     			//to filter out numbers like -8 so that it gives back -3, so that in the next step
+        if(amount < 0) {                   		 	// it can be turned to a non negative
+            amount += array.length;         			//exm -3 would be changed to +2, which is the same thing in respect to index
+        }
+
+        int[] rotatedArray = new int[array.length];
+
+        for(int i=0 ; i<array.length ; i++){
+            int rotatedIndex = (i+amount) % array.length;    	//modulo bc (0+2)%5=2, (4+4)%5=3, it gives the correct pos
+            rotatedArray[rotatedIndex]=array[i];
+        }
+        for(int i = 0; i < array.length; i++) {
+            array[i] = rotatedArray[i];             		//manually copies it back to the og array, since no return statement
+        }                                           		//bc public static VOID not public static int[]
+    }
+---------------------------------------------------------------------------------------------
+public static int[][] quantities(int[] array) {
+        // TODO
+        int[][] quantities = new int[array.length][2];  	//generates an array of empty arrays, that is to be filled
+        int nextPosition=0;
+
+        for(int i=0 ; i<array.length ; i++){
+            boolean isInQuantities=false;
+            for(int j=0 ; j<nextPosition ; j++){		//since nextPos=0, 0<0, means that it wont run the loop the first time
+                if(quantities[j][0]==array[i]){ 		//if the number at the 0th index of the j-th set is equal to i-th element of the array
+                    quantities[j][1]++;         		//increments the 1st index(second element) of the j-th set
+                    isInQuantities=true;        		//it is alr found, so increments the counter by 1
+                    break;
+                }
+            }
+            if(!isInQuantities){    //if it remains false(it is not in the set)
+                quantities[nextPosition]=new int[]{array[i],1};   	//it replaces an array of {0,0} at the nextPosition-th for it to be for exm {2,1}, aka atm the number 2 is found 1x
+                nextPosition++;     //increments nextPosition
+            }
+        }
+
+        int[][]reducedQuantities = new int[nextPosition][2];		//we use nextPosition bc it is the number of unique elements
+        for(int i=0 ; i<nextPosition ; i++){                		//as it is incremented, the unused slots will all be after it
+            reducedQuantities[i]=quantities[i];
+        }
+
+        return reducedQuantities;
+    }
